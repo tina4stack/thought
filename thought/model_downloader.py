@@ -1,7 +1,5 @@
 import os
 import json
-
-from Tools.scripts.cleanfuture import verbose
 from gguf_modeldb import ModelDB
 
 def _load_file(filename):
