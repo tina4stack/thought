@@ -48,6 +48,9 @@ llm = load_model("./model_db/nomic-embed-text-v1.5.Q4_K_M.gguf", verbose=True, e
 text = "I think therefore I am"
 
 vectors = embed(llm, text)
+# or
+vectors = llm.thought_embed(text)
+
 
 print(vectors)
 ```
@@ -63,6 +66,8 @@ llm = load_model("./model_db/DarkIdol-Llama-3.1-8B-Instruct-1.2-Uncensored-Q4_K_
 text = "I think therefore I am"
 
 response = generate(llm, "Explain this text<|eot_id|>User:"+text+"<|eot_id|>AI:", stop=["\n"], seed=123456, call_back=token_stream)
+#or
+response = llm.thought_generate("Explain this text<|eot_id|>User:"+text+"<|eot_id|>AI:", stop=["\n"], seed=123456, call_back=token_stream)
 
 print(response)
 ```

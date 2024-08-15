@@ -25,7 +25,7 @@ stop = pc()
 print("COLD EMBEDDINGS", embeddings, stop-start)
 
 start = pc()
-embeddings = embed(llm, text)
+embeddings = llm.thought_embed(text)
 stop = pc()
 print("HOT EMBEDDINGS", embeddings, stop-start)
 
@@ -34,11 +34,11 @@ del llm
 def token_stream(token):
     print(token)
 
-llm = load_model("./model_db/DarkIdol-Llama-3.1-8B-Instruct-1.2-Uncensored.i1-Q4_K_M.gguf", verbose=False, embedding=False)
+llm = load_model("./model_db/DarkIdol-Llama-3.1-8B-Instruct-1.2-Uncensored.i1-Q4_K_M.gguf", verbose=True, embedding=False)
 text = "I think therefore I am"
 
 start = pc()
-response = generate(llm, "Explain this text<|eot_id|>User:"+text+"<|eot_id|>AI:", stop=["\n"], seed=123456, call_back=token_stream)
+response = llm.thought_generate("Explain this text<|eot_id|>User:"+text+"<|eot_id|>AI:", stop=["\n"], seed=123456, call_back=token_stream)
 stop = pc()
 print("COLD MODEL", response, stop-start)
 
