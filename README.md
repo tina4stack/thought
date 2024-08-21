@@ -44,6 +44,7 @@ download_model("nomic-embed-text-v1.5", "Q4_K_M")
 The flag `embedding=True` needs to be on!
 
 ```python
+
 llm = load_model("./model_db/nomic-embed-text-v1.5.Q4_K_M.gguf", verbose=True, embedding=True)
 text = "I think therefore I am"
 
@@ -61,6 +62,10 @@ Please note we do not do any weird prompt templating or black boxing on your inp
 and provide the prompt with the correct "tokens" in your prompt.
 
 ```python
+
+def token_stream(token):
+    print(token)
+
 llm = load_model("./model_db/DarkIdol-Llama-3.1-8B-Instruct-1.2-Uncensored-Q4_K_S-imat.gguf", verbose=True, embedding=False)
 
 text = "I think therefore I am"
